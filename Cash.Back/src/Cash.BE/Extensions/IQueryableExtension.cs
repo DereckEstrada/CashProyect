@@ -1,5 +1,6 @@
 using Cash.BE.Helpers;
 using Cash.BE.Querying;
+using Cash.Exceptions.Helpers;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cash.BE.Extensions;
@@ -19,7 +20,7 @@ public static class IQueryableExtension
                 query = query.Skip(queryOptions.Pagination.Page).Take(queryOptions.Pagination.PageSize);
         }else if (queryOptions.Pagination is not null)
         {
-            throw new InvalidOperationException(ErrorMessage.PaginationWithOutOrder);
+            throw new InvalidOperationException(MessageExceptions.PaginationWithOutOrder);
         }
 
         if (queryOptions.Includes is not null)

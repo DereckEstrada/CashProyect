@@ -13,8 +13,7 @@ public static  class UserMapper
             UserName = userCreateRequest.UserName,
             Email = userCreateRequest.Email,
             RolId = userCreateRequest.RolId,
-            
-            //Helper Id User
+            Password = userCreateRequest.Password, 
         };
     }
 

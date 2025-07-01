@@ -9,9 +9,10 @@ public class ApiResponse<T>
     public string? Message { get; set; }
     public PaginationDto? Pagination { get; set; }
 
-    public void SetStatusCodeAndMessage(StatusCode statusCode)
+    public void SetReponse(StatusCode statusCode, T? data )
     {
         this.StatusCode = statusCode;
+        this.Data = data;
         this.Message = ApiMessageHelper.Messages[statusCode];
     }
 }

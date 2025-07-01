@@ -14,8 +14,10 @@ builder.Host.UseSerilog();
 builder.Services.AddControllers();
 builder.Services.AddConfiguration(builder.Configuration);
 builder.Services.AddDbContext<CashDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddServices();
 builder.Services.AddRepositories();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

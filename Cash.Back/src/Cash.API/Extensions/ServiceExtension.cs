@@ -1,4 +1,5 @@
 using System.Text;
+using Cash.BE.Configuration;
 using Cash.Exceptions.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
@@ -35,5 +36,6 @@ public static class ServiceExtension
             };
         });
         services.AddAuthorization();
+        services.Configure<JwtOptions>(configuration.GetSection("Jwt"));
     }
 }

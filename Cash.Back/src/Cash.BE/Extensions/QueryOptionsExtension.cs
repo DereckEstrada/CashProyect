@@ -4,6 +4,7 @@ using Cash.BE.Attributes;
 using Cash.BE.Helpers;
 using Cash.BE.Querying;
 using Cash.BE.Request;
+using Cash.Exceptions.Helpers;
 
 namespace Cash.BE.Extensions;
 
@@ -35,11 +36,11 @@ public static class QueryOptionsExtension
         var property = type.GetProperty(filter.FieldName);
         
         
-        if(property is null) throw new InvalidOperationException(ErrorMessage.FieldNotFound);
+        if(property is null) throw new InvalidOperationException(MessageExceptions.FieldNotFound);
         
         var attribute = Attribute.GetCustomAttribute(property, typeof(AllowedFilterAttribute));
         
-        if(attribute is null) throw new InvalidOperationException(ErrorMessage.FieldNotAllowed);
+        if(attribute is null) throw new InvalidOperationException(MessageExceptions.FieldNotAllowed);
         
         _parameter = Expression.Parameter(typeof(T), "x");
         

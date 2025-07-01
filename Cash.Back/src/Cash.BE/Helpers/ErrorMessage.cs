@@ -30,9 +30,6 @@ public class ErrorMessage
     public const string ExpressionPhone = "The number must start with 09 and have exactly 10 digits.";
     
     
-    public const string PaginationWithOutOrder = "Can't apply pagination without order";
-    public const string FieldNotFound = "Field not found";
-    public const string FieldNotAllowed = "Field is not allowed";
     
     
     public const string NoIdentificated = "Anonimo";

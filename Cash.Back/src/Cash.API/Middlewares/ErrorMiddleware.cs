@@ -14,8 +14,17 @@ public class ErrorMiddleware(ILogger<ErrorMiddleware> logger) : IMiddleware
         {
             await next(context);
         }
-        catch (BadHttpRequestException ex)
+        catch (BadHttpRequestException e)
         {
+            ApiResponse<string> errorResponse = new ApiResponse<string>
+            {
+                StatusCode = StatusCode.InternalServerError,
+                Message = e.Message,
+            };
+            _logger.LogError("{Method} {Path} {NameIdentifier} {Message}", context.Request.Method, context.Request.Path, context.User.FindFirstValue(ClaimTypes.NameIdentifier) ?? ErrorMessage.NoIdentificated, e.InnerException?.Message ?? e.Message);
+           
+            context.Response.StatusCode = (int)errorResponse.StatusCode;
+            await context.Response.WriteAsJsonAsync(errorResponse);
         }
         catch (Exception e)
         {
